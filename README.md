@@ -2,53 +2,53 @@
 
 **Внимание!** *Данный план является предварительным, потому что список задач, которые предстоит решить в процессе создания новой версии приложения может подвергнуться существенной переработки. По мере создания функциональности план будет пересмотрен.*
 
-* [x] Регистрация репозитория github.com
-* [x] Создание проекта и его подготовка к разработке
-    * [x] Настройка логирования в log-файл
-    * [x] Реализация "вход/выход" на сайте
-* [x] Настройка добавления учетной записи при создании новой базы (SEED)
-* [x] Создание сущностей (классов) и конфигрурирование сущностей через fluent API (EntityTypeConfiguration)
-    * [x] Fact
-    * [x] Tag
-    * [x] Notification
-* [x] Создание EF-миграции и базы данных
-* [x] Настройка возможности переноса данных из старой БД в новую БД
-* [x] Создание ViewModels для сущностей и настройка маппинга (Automapper)
-* [x] Изменение шаблонов от Microsoft.AspNetCore.Identity UI
-* [x] Шаблоны ASP.NET MVC (_Layout) и управление ими
-* [x] Реализация в ApplicationDbContext автоматическое обновление свойств CreatedAt, UpdatedAt, CreatedBy, UpdatedBy (унаследованных от типа Auditable)
-* [x] Определить маршруты для MVC
-* [x] Mediatr: Инфраструктура для Notification
-  * [x] Mediatr: NotificationBase
-  * [x] Mediatr: NotificationHandlerBase
-  * [x] Mediatr: ErrorNotification
-  * [x] Mediatr: ErrorNotificationHandler
-  * [x] Mediatr: FeedbackNotification
-  * [x] Mediatr: FeedbackNotificationHandler
-* [x] Объединение и минификация статических ресурсов в ASP.NET Core 
-* [x] Создание главной страницы (без разбиение на страницы)
-  * [x] Метод в контроллере FactsController
-  * [x] Mediatr: FactGetPagedRequest
-  * [x] Mediatr: FactGetPagedResponse
-* [x] TagHelper: Создание pager: IPagedListTagHelperService, PagerData, PagedListHelper
-* [x] Подключение Pager на главную страницу
-* [x] Страница детального просмотра выбранного факта
-  * [x] Настройка и проверка Route для Show.cshtml 
-  * [x] Разметка страницы отображения выбранного факта
-  * [x] Mediatr: FactGetByIdRequest
-  * [x] Mediatr: FactGetByIdResponse
-* [x] Реалиазиция фильтрации фактов на главной странице
-    * [x] По метке (tag)
-    * [x] По слову поиска (search)
-* [x] Страница "Обратная связь" (Backend) 
-  * [x] Добавление записей в список уведомлений (Notification)
-  * [x] Mediatr: FeedbackNotificationRequest
-  * [x] Mediatr: FeedbackNotificationResponse
-  * [x] Метод генерирующий картинку (reCapture) 
-  * [x] Добавление проверочной картинки (reCapture) на страницу FeedBack
+* [ ] Регистрация репозитория github.com
+* [] Создание проекта и его подготовка к разработке
+    * [ ] Настройка логирования в log-файл
+    * [ ] Реализация "вход/выход" на сайте
+* [ ] Настройка добавления учетной записи при создании новой базы (SEED)
+* [ ] Создание сущностей (классов) и конфигрурирование сущностей через fluent API (EntityTypeConfiguration)
+    * [ ] Fact
+    * [ ] Tag
+    * [ ] Notification
+* [ ] Создание EF-миграции и базы данных
+* [ ] Настройка возможности переноса данных из старой БД в новую БД
+* [ ] Создание ViewModels для сущностей и настройка маппинга (Automapper)
+* [ ] Изменение шаблонов от Microsoft.AspNetCore.Identity UI
+* [ ] Шаблоны ASP.NET MVC (_Layout) и управление ими
+* [ ] Реализация в ApplicationDbContext автоматическое обновление свойств CreatedAt, UpdatedAt, CreatedBy, UpdatedBy (унаследованных от типа Auditable)
+* [ ] Определить маршруты для MVC
+* [ ] Mediatr: Инфраструктура для Notification
+  * [ ] Mediatr: NotificationBase
+  * [ ] Mediatr: NotificationHandlerBase
+  * [ ] Mediatr: ErrorNotification
+  * [ ] Mediatr: ErrorNotificationHandler
+  * [ ] Mediatr: FeedbackNotification
+  * [ ] Mediatr: FeedbackNotificationHandler
+* [ ] Объединение и минификация статических ресурсов в ASP.NET Core 
+* [ ] Создание главной страницы (без разбиение на страницы)
+  * [ ] Метод в контроллере FactsController
+  * [ ] Mediatr: FactGetPagedRequest
+  * [ ] Mediatr: FactGetPagedResponse
+* [ ] TagHelper: Создание pager: IPagedListTagHelperService, PagerData, PagedListHelper
+* [ ] Подключение Pager на главную страницу
+* [ ] Страница детального просмотра выбранного факта
+  * [ ] Настройка и проверка Route для Show.cshtml 
+  * [ ] Разметка страницы отображения выбранного факта
+  * [ ] Mediatr: FactGetByIdRequest
+  * [ ] Mediatr: FactGetByIdResponse
+* [ ]Реалиазиция фильтрации фактов на главной странице
+    * [ ] По метке (tag)
+    * [ ] По слову поиска (search)
+* [ ] Страница "Обратная связь" (Backend) 
+  * [ ] Добавление записей в список уведомлений (Notification)
+  * [ ] Mediatr: FeedbackNotificationRequest
+  * [ ] Mediatr: FeedbackNotificationResponse
+  * [ ] Метод генерирующий картинку (reCapture) 
+  * [ ] Добавление проверочной картинки (reCapture) на страницу FeedBack
 * [ ] Blazor: Подключаем Toastr через component Blazor
 * [ ] Blazor: Копируем ссылку через component Blazor
-* [x] Администратор: Страница "панель управления" (навигатор управления)
+* [ ] Администратор: Страница "панель управления" (навигатор управления)
 * [ ] Администратор: Страница "добавление факта"
    * [ ] Blazor: Используем component Blazor для поиска по ключу уже существующих фактов
    * [ ] Blazor: Используем component Blazor для поиска тегов для нового факта
@@ -56,8 +56,8 @@
    * [ ] Blazor: Используем component Blazor для поиска по ключу уже существующих фактов
    * [ ] Blazor: Используем component Blazor для поиска тегов для обновления факта
 * [ ] Администратор: Страница "удаления факта"
-* [x] Администратор: Реализация постраничного просмотра списка сообщений (Notification)
-* [x] Администратор: Страница "отправки почтового сообщения"
+* [ ] Администратор: Реализация постраничного просмотра списка сообщений (Notification)
+* [ ] Администратор: Страница "отправки почтового сообщения"
 * [ ] HostedService: Сработка по расписанию (Cron)
   * [ ] Отправка почты. Создание IEmailService
   * [ ] INotificationProvider обработчик Notification, отправка сообщений и обновление статуса отправки
