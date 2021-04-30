@@ -71,7 +71,7 @@ namespace Facts.Web.Data
             }
 
             var userManaget = scope.ServiceProvider.GetService<UserManager<IdentityUser>>();
-            await userManaget!.AddToRolesAsync(user, roles);
+            await userManaget.AddToRolesAsync(user, roles);
 
             await context.SaveChangesAsync();
         }
