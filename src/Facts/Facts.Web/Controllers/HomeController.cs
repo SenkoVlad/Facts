@@ -1,4 +1,4 @@
-﻿using Facts.Web.Models;
+﻿using Facts.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;

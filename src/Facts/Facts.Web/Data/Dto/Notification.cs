@@ -11,7 +11,7 @@ namespace Facts.Web.Data.Dto
         public string Subject { get; set; }
         public string Content { get; set; }
         public bool IsCompleted { get; set; }
-        public string AddressFrom { get; set; }
+        public string AddressFrom { get; set; } 
         public string AddressTo { get; set; }
     }
 }
