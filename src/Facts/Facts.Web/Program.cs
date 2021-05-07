@@ -23,7 +23,7 @@ namespace Facts.Web
                        .WriteTo.Console()
                        .CreateLogger();
 
-            try
+            try 
             {
                 Log.Information("Starting web host");
                 var host = CreateHostBuilder(args).Build();
@@ -32,7 +32,6 @@ namespace Facts.Web
                 {
                     await DataInitializer.InitializeAsync(scope.ServiceProvider);
                 }
-
                 host.Run();
                 
                 return 0;

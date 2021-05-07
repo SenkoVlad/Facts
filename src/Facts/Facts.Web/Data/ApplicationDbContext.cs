@@ -1,22 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Facts.Web.Data.Dto;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Facts.Web.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : DbContextBase
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
+        public DbSet<Fact> Facts { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            builder.ApplyConfigurationsFromAssembly(typeof(Startup).Assembly);
-            base.OnModelCreating(builder); 
         }
     }
 }

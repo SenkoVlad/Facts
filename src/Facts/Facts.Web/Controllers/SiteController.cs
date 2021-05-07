@@ -1,4 +1,6 @@
-﻿using Facts.Web.ViewModels;
+﻿using Facts.Web.Data;
+using Facts.Web.Data.Dto;
+using Facts.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,17 +11,20 @@ using System.Threading.Tasks;
 
 namespace Facts.Web.Controllers
 {
-    public class HomeController : Controller
+    public class SiteController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<SiteController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public SiteController(ILogger<SiteController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int pageId, string tag, string search)
         {
+            ViewData["pageId"] = pageId;
+            ViewData["tag"] = tag;
+            ViewData["search"] = search;
             return View();
         }
 
