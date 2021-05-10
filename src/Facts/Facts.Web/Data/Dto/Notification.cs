@@ -13,5 +13,13 @@ namespace Facts.Web.Data.Dto
         public bool IsCompleted { get; set; }
         public string AddressFrom { get; set; } 
         public string AddressTo { get; set; }
+
+        public Notification(string subject, string content, string addressFrom, string addressTo)
+        {
+            Subject = subject;
+            Content = content;
+            AddressFrom = addressFrom;
+            AddressTo = addressTo;
+        }
     }
 }

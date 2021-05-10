@@ -1,6 +1,8 @@
 ﻿using Facts.Web.Data;
 using Facts.Web.Data.Dto;
+using Facts.Web.Mediatr;
 using Facts.Web.ViewModels;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -14,10 +16,12 @@ namespace Facts.Web.Controllers
     public class SiteController : Controller
     {
         private readonly ILogger<SiteController> _logger;
+        private IMediator _mediator;
 
-        public SiteController(ILogger<SiteController> logger)
+        public SiteController(ILogger<SiteController> logger, IMediator mediator)
         {
             _logger = logger;
+            _mediator = mediator;
         }
 
         public async Task<IActionResult> Index(int pageId, string tag, string search)
@@ -28,8 +32,11 @@ namespace Facts.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
+            await _mediator.Publish(new ErrorNotification("Privacy test for notification"), HttpContext.RequestAborted);
+            await _mediator.Publish(new FeedbackNotification("Privacy test for feedback"), HttpContext.RequestAborted);
+
             return View();
         }
 

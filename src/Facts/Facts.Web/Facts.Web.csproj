@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>aspnet-Facts.Web-25B18ACA-00CB-4D54-88C0-957C32DD05BD</UserSecretsId>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,5 +26,4 @@
     </PackageReference>
     <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
   </ItemGroup>
-
 </Project>

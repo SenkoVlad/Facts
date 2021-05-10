@@ -1,3 +1,4 @@
+using Calabonga.AspNetCore.Controllers.Extensions;
 using Calabonga.UnitOfWork;
 using Facts.Web.Data;
 using Facts.Web.Infrastructure.Mappers.Base;
@@ -31,6 +32,8 @@ namespace Facts.Web
             });
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddUnitOfWork<ApplicationDbContext>();
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -38,6 +41,7 @@ namespace Facts.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddAutoMapper(typeof(Startup).Assembly);
+            services.AddCommandAndQueries(typeof(Startup).Assembly);
 
             services.AddControllersWithViews();
         }
