@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Facts.Web.ViewModels.TagViewModel>
+
+@foreach(var tag in Model)
+{
+    <span class="badge bg-secondary">@tag.Name</span>
+} 

@@ -1,4 +1,5 @@
 ﻿using Calabonga.EntityFrameworkCore.Entities.Base;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;

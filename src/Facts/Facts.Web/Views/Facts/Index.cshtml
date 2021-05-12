@@ -1,0 +1,18 @@
+﻿@model Calabonga.OperationResults.OperationResult<Calabonga.UnitOfWork.IPagedList<Facts.Web.ViewModels.FactViewModel>>
+
+@{
+    Layout = "_LayoutColumn";
+    ViewData["Title"] = "Home Page";
+}
+
+@if(Model.Result != null)
+{
+    foreach (var fact in Model.Result.Items)
+    {
+        <partial name="_Fact" model="fact"/>
+    }
+}
+
+@section Column {
+    <p>COLUMN!!!!!</p>
+}
