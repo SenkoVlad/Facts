@@ -5,14 +5,28 @@
     ViewData["Title"] = "Home Page";
 }
 
-@if(Model.Result != null)
+
+
+@if (Model.Result != null)
 {
     foreach (var fact in Model.Result.Items)
     {
-        <partial name="_Fact" model="fact"/>
+        <partial name="_Fact" model="fact" />
     }
+
+    <pager class="my-5" asp-paged-list-page-size="Model.Result.PageSize"
+           asp-paged-list-total-count="Model.Result.TotalCount"
+           asp-paged-list-page-index="Model.Result.PageIndex"
+           asp-paged-list-url="index"
+           asp-controller="facts"
+           asp-route-parameter="pageIndex"></pager>
 }
 
 @section Column {
-    <p>COLUMN!!!!!</p>
+    <div class="my-3">
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
 }

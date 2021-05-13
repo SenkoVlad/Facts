@@ -25,7 +25,7 @@ namespace Facts.Web.Controllers.Facts.Queries
 
         public FactGetPagedRequest(int pageIndex, string? tag, string? search)
         {
-            this.PageIndex = pageIndex;
+            this.PageIndex = pageIndex - 1 < 0 ? 0 : pageIndex -1;
             Tag = tag;
             Search = search;
         }
@@ -57,9 +57,9 @@ namespace Facts.Web.Controllers.Facts.Queries
                     cancellationToken: cancellationToken);
 
             var mapped = _mapper.Map<IPagedList<FactViewModel>>(items);
+            operation.AddSuccess("Success");
 
             operation.Result = mapped;
-            operation.AddSuccess("Success");
             return operation;
         }
     }

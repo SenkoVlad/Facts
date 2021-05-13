@@ -2,6 +2,7 @@ using Calabonga.AspNetCore.Controllers.Extensions;
 using Calabonga.UnitOfWork;
 using Facts.Web.Data;
 using Facts.Web.Infrastructure.Mappers.Base;
+using Facts.Web.Infrastructure.TagHelpers.PagedListTagHelper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -44,6 +45,8 @@ namespace Facts.Web
             services.AddCommandAndQueries(typeof(Startup).Assembly);
 
             services.AddControllersWithViews();
+
+            services.AddTransient<IPagerTagHelperService, PagerTagHelperService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
