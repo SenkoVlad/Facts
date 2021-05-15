@@ -1,3 +1,6 @@
 ﻿@model Guid
 
-<a asp-controller="Facts" asp-action="Fact" asp-route-id="@Model">Ссылка</a>
+@if(ViewData["hideLink"] is null)
+{
+   <a asp-controller="Facts" asp-action="Show" asp-route-id="@Model">Ссылка</a>
+}

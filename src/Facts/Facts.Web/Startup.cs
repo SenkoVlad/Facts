@@ -32,6 +32,12 @@ namespace Facts.Web
                 config.Password.RequireUppercase = false;
             });
 
+            services.AddRouting(config =>
+            {
+                config.LowercaseQueryStrings = true;
+                config.LowercaseUrls = true;
+            });
+
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddUnitOfWork<ApplicationDbContext>();
 
@@ -76,7 +82,6 @@ namespace Facts.Web
                 endpoints.MapControllerRoute(
                     name: "index",
                     pattern: "{controller=Facts}/{action=Index}/{tag:regex([a-z¿-ﬂ])}/{search:regex([a-z¿-ﬂ])}/{pageId:int?}");
-
 
                 endpoints.MapControllerRoute(
                     name: "index",
