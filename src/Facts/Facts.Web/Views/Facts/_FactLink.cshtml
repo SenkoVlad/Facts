@@ -1,6 +1,10 @@
-﻿@model Guid
-
-@if(ViewData["hideLink"] is null)
+﻿@using Facts.Web.Extensions
+@model Guid
+@if (ViewData["HideLink"] is not null)
 {
-   <a asp-controller="Facts" asp-action="Show" asp-route-id="@Model">Ссылка</a>
+    <span>Скопировать ссылку</span>
+}
+else
+{
+    <a asp-controller="Facts" asp-action="Show" asp-route-id="@Model" asp-route-returnUrl="@Context.GetReturnUrl()">Открыть</a>
 }

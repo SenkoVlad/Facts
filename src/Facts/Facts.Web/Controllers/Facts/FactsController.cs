@@ -14,12 +14,27 @@ namespace Facts.Web.Controllers.Facts
         public FactsController(IMediator mediator)
         {
             _mediator = mediator;
-        }       
+        }
 
-        public async Task<IActionResult> Index(int? pageId, string tag, string search) => 
-            View(await _mediator.Send(new FactGetPagedRequest(pageId ?? 0, tag, search), HttpContext.RequestAborted));
+        public async Task<IActionResult> Index(int? pageId, string tag, string search)
+        {
+            ViewData["search"] = search;
+            ViewData["tag"] = tag;
 
-        public async Task<IActionResult> Show(Guid id) => 
-            View(await _mediator.Send(new FactGetByIdRequest(id), HttpContext.RequestAborted));
+            var index = pageId ?? 1;
+            var operation = await _mediator.Send(new FactGetPagedRequest(index, tag, search), HttpContext.RequestAborted);
+            if(operation.Ok && operation.Result.TotalPages < index)
+            {
+                return RedirectToAction(nameof(Index), new { tag, search, pageIndex = index });
+            }
+            return View(operation);
+        } 
+
+        public async Task<IActionResult> Show(Guid id, string? returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            
+            return View(await _mediator.Send(new FactGetByIdRequest(id), HttpContext.RequestAborted));
+        }
     }
 }

@@ -13,6 +13,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Calabonga.AspNetCore.Controllers;
+using Calabonga.PredicatesBuilder;
+using System;
+using System.Linq.Expressions;
 
 namespace Facts.Web.Controllers.Facts.Queries
 {
@@ -47,9 +50,11 @@ namespace Facts.Web.Controllers.Facts.Queries
         public override async Task<OperationResult<IPagedList<FactViewModel>>> Handle(FactGetPagedRequest request, CancellationToken cancellationToken)
         {
             var operation = OperationResult.CreateResult<IPagedList<FactViewModel>>();
+            var predicate = CreatePreducate(request);
 
             var items = await _unitOfWork.GetRepository<Fact>()
                 .GetPagedListAsync(
+                    predicate: predicate,
                     include: i => i.Include(x => x.Tags),
                     orderBy: o => o.OrderByDescending(x => x.CreatedAt),
                     pageIndex: request.PageIndex,
@@ -61,6 +66,19 @@ namespace Facts.Web.Controllers.Facts.Queries
 
             operation.Result = mapped;
             return operation;
+        }
+            
+        private Expression<Func<Fact, bool>> CreatePreducate(FactGetPagedRequest request)
+        {
+            var predicate = PredicateBuilder.True<Fact>();
+
+            if (!string.IsNullOrWhiteSpace(request.Search))
+                predicate = predicate.And(x => x.Content.Contains(request.Search));
+
+            if (!string.IsNullOrWhiteSpace(request.Tag))
+                predicate = predicate.And(x => x.Tags.Select(x => x.Name).Contains(request.Tag));
+
+            return predicate;
         }
     }
 }

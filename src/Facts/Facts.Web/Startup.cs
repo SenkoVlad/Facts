@@ -5,11 +5,13 @@ using Facts.Web.Infrastructure.Mappers.Base;
 using Facts.Web.Infrastructure.TagHelpers.PagedListTagHelper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Threading.Tasks;
 
 namespace Facts.Web
 {
@@ -95,6 +97,13 @@ namespace Facts.Web
                     name: "default",
                     pattern: "{controller=Facts}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+
+                #region disable some pages
+
+                endpoints.MapGet("/Identity/Account/Register", context => Task.Factory.StartNew(() =>
+                    context.Response.Redirect("/Identity/Account/Login?returnUrl=~%2F", true, true)));
+
+                #endregion
             });
         }
     }
