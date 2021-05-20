@@ -2,21 +2,28 @@
 
 @{
     Layout = "_Layout";
-    ViewData["HideLink"] = true;
+    ViewData["HideLink"] = true; 
 }
 <div class="row">
     <div class="col">
-
-        @if (!Model.Ok)
-        {
-            <h1>Ошибка</h1>
-            <p class="alert alert-warning">
-                @Model.Metadata.Message
-            </p>
-        }
-        else
-        {
-            <partial name="_Fact" model="Model.Result" />
-        }
+   @if (!Model.Ok)
+    {
+        <h1>Ошибка</h1>
+        <p class="alert alert-warning">
+            @Model.Metadata.Message
+        </p> 
+    }
+    else
+    {
+        <partial name="_Fact" model="Model.Result" />
+    }
     </div>
 </div>
+
+<div class="row">
+    <component type="typeof(Component1)" render-mode="ServerPrerendered"/>
+</div>
+
+@section Scripts {
+    <script src="_framework/blazor.server.js"></script>
+}

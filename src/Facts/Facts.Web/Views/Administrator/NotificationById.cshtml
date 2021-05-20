@@ -1,0 +1,15 @@
+﻿@model Facts.Web.ViewModels.NotificationViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = $"Сообщение {Model.Id}";
+    ViewData["CanSend"] = true;
+}
+
+<h3>@ViewData["Title"]</h3>
+
+@if (Model != null)
+{
+    <partial name="_NotificationView" model="Model" view-data="ViewData" />
+}
+

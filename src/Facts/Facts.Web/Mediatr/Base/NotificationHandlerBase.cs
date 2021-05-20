@@ -26,7 +26,7 @@ namespace Facts.Web.Mediatr.Base
             stringBuilder.AppendLine(notification.Content);
             
             if(notification.Exception is not null)
-            {
+            {   
                 stringBuilder.Append(notification.Exception.Message);
 
                 if(notification.Exception.InnerException is not null)
