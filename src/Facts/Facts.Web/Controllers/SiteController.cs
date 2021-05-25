@@ -1,5 +1,6 @@
 ﻿using Calabonga.Facts.Web.ViewModels;
 using Facts.Web.Mediatr;
+using Facts.Web.RazorClassLibrary;
 using Facts.Web.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,7 @@ namespace Facts.Web.Controllers
             _environment = environment;
             _subjects = new List<string> { "Связь с разработчиком", "Жалоба", "Предложение", "Другое" }.Select(x => new SelectListItem { Value = x, Text = x })
                             .ToList();
+
         }
 
         public async Task<IActionResult> Index(int pageId, string tag, string search)
@@ -52,7 +54,10 @@ namespace Facts.Web.Controllers
             return View();
         }
 
-        public IActionResult About() => View();
+        public async Task<IActionResult> About() 
+        {
+            return View();
+        }
 
         public IActionResult Random() => View();
 

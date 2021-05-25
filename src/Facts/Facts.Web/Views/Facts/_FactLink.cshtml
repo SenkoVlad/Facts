@@ -2,7 +2,7 @@
 @model Guid
 @if (ViewData["HideLink"] is not null)
 {
-    <span>Скопировать ссылку</span>
+    <component type="typeof(FactCopyLinkComponent)" render-mode="ServerPrerendered" param-LinkValue="@Url.ActionLink("Show", "Facts", new { id = Model })"/>
 }
 else
 {

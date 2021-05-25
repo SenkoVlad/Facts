@@ -98,7 +98,9 @@ namespace Facts.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Facts}/{action=Index}/{id?}");
+
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
 
                 #region disable some pages
 

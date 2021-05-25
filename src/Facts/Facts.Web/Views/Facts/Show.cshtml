@@ -20,10 +20,11 @@
     </div>
 </div>
 
-<div class="row">
-    <component type="typeof(Component1)" render-mode="ServerPrerendered"/>
-</div>
+@section Headers {
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+}
 
 @section Scripts {
     <script src="_framework/blazor.server.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 }
