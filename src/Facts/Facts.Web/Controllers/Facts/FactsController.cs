@@ -36,10 +36,13 @@ namespace Facts.Web.Controllers.Facts
             
             return View(await _mediator.Send(new FactGetByIdRequest(id), HttpContext.RequestAborted));
         }
-
         public async Task<IActionResult> Random()
         {
             return View(await _mediator.Send(new FactGetRandomRequest(), HttpContext.RequestAborted));
+        }        
+        public async Task<IActionResult> Rss(int count = 20)
+        {
+            return Content(await _mediator.Send(new FactRssRequest(count), HttpContext.RequestAborted));
         }
     }
 }

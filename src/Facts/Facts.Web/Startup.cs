@@ -2,6 +2,7 @@ using Calabonga.AspNetCore.Controllers.Extensions;
 using Calabonga.UnitOfWork;
 using Facts.Web.Data;
 using Facts.Web.Infrastructure.Mappers.Base;
+using Facts.Web.Infrastructure.Services;
 using Facts.Web.Infrastructure.TagHelpers.PagedListTagHelper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -55,6 +56,7 @@ namespace Facts.Web
             services.AddControllersWithViews();
 
             services.AddTransient<IPagerTagHelperService, PagerTagHelperService>();
+            services.AddTransient<IFactService, FactService>();
 
             services.AddServerSideBlazor();
         }
