@@ -57,7 +57,9 @@ namespace Facts.Web
 
             services.AddTransient<IPagerTagHelperService, PagerTagHelperService>();
             services.AddTransient<IFactService, FactService>();
+            services.AddTransient<ITagService, TagService>();
 
+            services.AddResponseCaching(); 
             services.AddServerSideBlazor();
         }
 
@@ -82,6 +84,8 @@ namespace Facts.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseResponseCaching();
 
             app.UseEndpoints(endpoints =>
             {

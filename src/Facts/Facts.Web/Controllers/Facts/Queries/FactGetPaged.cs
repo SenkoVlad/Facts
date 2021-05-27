@@ -66,7 +66,7 @@ namespace Facts.Web.Controllers.Facts.Queries
 
             operation.Result = mapped;
             return operation;
-        }
+        } 
             
         private Expression<Func<Fact, bool>> CreatePreducate(FactGetPagedRequest request)
         {

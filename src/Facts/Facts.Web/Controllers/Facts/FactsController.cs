@@ -1,4 +1,5 @@
 ﻿using Facts.Web.Controllers.Facts.Queries;
+using Facts.Web.Infrastructure.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,9 +12,11 @@ namespace Facts.Web.Controllers.Facts
     public class FactsController : Controller
     {
         private IMediator _mediator;
-        public FactsController(IMediator mediator)
+        private ITagService _tagService;
+        public FactsController(IMediator mediator, ITagService tagService)
         {
             _mediator = mediator;
+            _tagService = tagService;
         }
 
         public async Task<IActionResult> Index(int? pageId, string tag, string search)
@@ -44,5 +47,7 @@ namespace Facts.Web.Controllers.Facts
         {
             return Content(await _mediator.Send(new FactRssRequest(count), HttpContext.RequestAborted));
         }
+
+        public IActionResult Cloud() =>  View();
     }
 }
