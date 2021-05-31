@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Facts.Contracts\Facts.Contracts.csproj" />
     <ProjectReference Include="..\Facts.Web.RazorClassLibrary\Facts.Web.RazorClassLibrary.csproj" />
   </ItemGroup>
 </Project>

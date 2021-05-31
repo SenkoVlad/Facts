@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Facts.Contracts\Facts.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

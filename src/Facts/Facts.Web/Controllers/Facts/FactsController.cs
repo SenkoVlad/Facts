@@ -1,6 +1,9 @@
 ﻿using Facts.Web.Controllers.Facts.Queries;
+using Facts.Web.Infrastructure;
 using Facts.Web.Infrastructure.Services;
+using Facts.Web.ViewModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -46,6 +49,31 @@ namespace Facts.Web.Controllers.Facts
         public async Task<IActionResult> Rss(int count = 20)
         {
             return Content(await _mediator.Send(new FactRssRequest(count), HttpContext.RequestAborted));
+        }
+
+        [HttpGet]
+        [Authorize(Roles = AppData.AdministratorRoleName)]
+        public async Task<IActionResult> Edit(Guid id, string returnUrl)
+        {
+            var operationResult = await _mediator.Send(new FactGetByIdForEditRequest(id, returnUrl));
+            if (operationResult.Ok)
+            {
+                return View(operationResult.Result);
+            }
+
+            return RedirectToAction("Error", "Site", new { code = 404 });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = AppData.AdministratorRoleName)]
+        public async Task<IActionResult> Edit(FactEditViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            return Redirect(model.ReturnUrl);
         }
 
         public IActionResult Cloud() =>  View();

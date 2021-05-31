@@ -32,3 +32,10 @@ export function copyToClipboard(value) {
     navigator.clipboard.writeText(value);
     return;
 }
+
+export function setTagsTotal(element, value) {
+    var control = document.querySelector(`#${element}`);
+    if (control) {
+        control.value = value;
+    }
+}

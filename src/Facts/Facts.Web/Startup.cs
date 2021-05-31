@@ -1,5 +1,6 @@
 using Calabonga.AspNetCore.Controllers.Extensions;
 using Calabonga.UnitOfWork;
+using Facts.Contracts;
 using Facts.Web.Data;
 using Facts.Web.Infrastructure.Mappers.Base;
 using Facts.Web.Infrastructure.Services;
@@ -58,6 +59,7 @@ namespace Facts.Web
             services.AddTransient<IPagerTagHelperService, PagerTagHelperService>();
             services.AddTransient<IFactService, FactService>();
             services.AddTransient<ITagService, TagService>();
+            services.AddTransient<ITagSearchService, TagSearchService>();
 
             services.AddResponseCaching(); 
             services.AddServerSideBlazor();

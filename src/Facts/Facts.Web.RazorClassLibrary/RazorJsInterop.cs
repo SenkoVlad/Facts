@@ -33,7 +33,11 @@ namespace Facts.Web.RazorClassLibrary
             return await module.InvokeAsync<string>("copyToClipboard", text);
         }
 
-        
+        public async ValueTask SetTagTotal(int value)
+        {
+            var module = await _moduleTask.Value;
+            await module.InvokeVoidAsync("setTagsTotal", "TotalTags", value);
+        }
 
         public async ValueTask DisposeAsync()
         {
