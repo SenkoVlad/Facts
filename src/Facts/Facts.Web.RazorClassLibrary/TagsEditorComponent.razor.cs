@@ -22,6 +22,12 @@ namespace Facts.Web.RazorClassLibrary
         protected List<string> Founded { get; set; }
         protected string TagName { get; set; }
 
+        protected override void OnInitialized()
+        {
+            if (Tags == null)
+                Tags = new List<string>();
+        }
+
         protected async Task DeleteTag(string tag)
         {
             if (string.IsNullOrEmpty(tag))
@@ -53,17 +59,22 @@ namespace Facts.Web.RazorClassLibrary
         protected async Task AddTag(string value)
         {
             var tag = value?.ToLower().Trim();
-            if(string.IsNullOrWhiteSpace(tag))
+            if (string.IsNullOrEmpty(tag))
             {
                 return;
             }
-            if(!Tags.Exists(x => x.Equals(tag, StringComparison.InvariantCulture)))
+
+            Tags ??= new List<string>();
+
+            if (!Tags.Exists(x => x.Equals(tag, StringComparison.InvariantCulture)))
             {
                 Tags.Add(tag);
+                // notify TagsTotal changed
                 await new RazorJsInterop(JsRuntime).SetTagTotal(Tags.Count);
             }
+
+            TagName = string.Empty;
             Founded = null;
-            TagName = "";
         }
     }
 }

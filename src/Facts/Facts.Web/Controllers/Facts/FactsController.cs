@@ -1,4 +1,5 @@
-﻿using Facts.Web.Controllers.Facts.Queries;
+﻿using Facts.Web.Controllers.Facts.Command;
+using Facts.Web.Controllers.Facts.Queries;
 using Facts.Web.Infrastructure;
 using Facts.Web.Infrastructure.Services;
 using Facts.Web.ViewModels;
@@ -7,7 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Facts.Web.Controllers.Facts
@@ -51,7 +51,7 @@ namespace Facts.Web.Controllers.Facts
             return Content(await _mediator.Send(new FactRssRequest(count), HttpContext.RequestAborted));
         }
 
-        [HttpGet]
+        #region Edit
         [Authorize(Roles = AppData.AdministratorRoleName)]
         public async Task<IActionResult> Edit(Guid id, string returnUrl)
         {
@@ -61,20 +61,59 @@ namespace Facts.Web.Controllers.Facts
                 return View(operationResult.Result);
             }
 
-            return RedirectToAction("Error", "Site", new { code = 404 });
+            return RedirectToAction("Error", "Site", new
+            {
+                code = 404
+            });
         }
 
         [HttpPost]
         [Authorize(Roles = AppData.AdministratorRoleName)]
         public async Task<IActionResult> Edit(FactEditViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(model);
+                var operationResult = await _mediator.Send(new FactUpdateRequest(model));
+                if (operationResult.Ok)
+                {
+                    return string.IsNullOrEmpty(model.ReturnUrl)
+                        ? RedirectToAction("Index", "Facts")
+                        : Redirect(model.ReturnUrl);
+                }
             }
 
-            return Redirect(model.ReturnUrl);
+            return View(model);
         }
+        #endregion
+
+        #region Add
+        [Authorize(Roles = AppData.AdministratorRoleName)]
+        public IActionResult Add()
+        {
+            var model = new FactCreateViewModel
+            {
+                Tags = new List<string>()
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = AppData.AdministratorRoleName)]
+        public async Task<IActionResult> Add(FactCreateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var operationResult = await _mediator.Send(new FactAddRequest(model));
+                if (operationResult.Ok)
+                {
+                    return RedirectToAction("Index", "Facts");
+                }
+                ModelState.AddModelError("", operationResult.Exception.GetBaseException().Message);
+            }
+
+            return View(model);
+        }
+        #endregion
 
         public IActionResult Cloud() =>  View();
     }

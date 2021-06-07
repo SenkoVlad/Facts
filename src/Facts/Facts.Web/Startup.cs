@@ -2,7 +2,8 @@ using Calabonga.AspNetCore.Controllers.Extensions;
 using Calabonga.UnitOfWork;
 using Facts.Contracts;
 using Facts.Web.Data;
-using Facts.Web.Infrastructure.Mappers.Base;
+using Facts.Web.Infrastructure.HostedServices;
+using Facts.Web.Infrastructure.Providers;
 using Facts.Web.Infrastructure.Services;
 using Facts.Web.Infrastructure.TagHelpers.PagedListTagHelper;
 using Microsoft.AspNetCore.Builder;
@@ -60,6 +61,9 @@ namespace Facts.Web
             services.AddTransient<IFactService, FactService>();
             services.AddTransient<ITagService, TagService>();
             services.AddTransient<ITagSearchService, TagSearchService>();
+            services.AddTransient<INotificationProvider, NotificationProvider>();
+            services.AddTransient<IEmailService, EmailService>();
+            services.AddHostedService<NotificationHostedService>();
 
             services.AddResponseCaching(); 
             services.AddServerSideBlazor();

@@ -33,14 +33,13 @@
                         <span asp-validation-for="Content" class="text-danger"></span>
                     </div>
                 </div>
-               @if (Model.Tags != null)
-                {
-                    <label asp-for="TotalTags"></label>
-                    <component type="typeof(TagsEditorComponent)" render-mode="ServerPrerendered"
-                               param-Tags="@Model.Tags" />
-                    <br />
-                    <span asp-validation-for="TotalTags" class="text-danger"></span>
-                }
+       
+                <label asp-for="TotalTags"></label>
+                <component type="typeof(TagsEditorComponent)" render-mode="ServerPrerendered"
+                            param-Tags="@Model.Tags" />
+                <br />
+                <span asp-validation-for="TotalTags" class="text-danger"></span>
+
                 <p class="">
                     <button type="submit" class="btn btn-outline-primary">Сохранить</button>
                     <a class="btn btn-outline-secondary" href="@Url.Content(Model.ReturnUrl)">Отмена</a>

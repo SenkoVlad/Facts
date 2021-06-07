@@ -17,7 +17,6 @@ namespace Facts.Web.Infrastructure.Mappers
             CreateMap<TagUpdateViewModel, Tag>()
                 .ForMember(x => x.Id, o => o.Ignore())
                 .ForMember(x => x.Facts, o => o.Ignore());
-
         }
     }
 }

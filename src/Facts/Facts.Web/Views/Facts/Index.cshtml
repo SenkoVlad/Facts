@@ -1,23 +1,19 @@
 ﻿@model Calabonga.OperationResults.OperationResult<Calabonga.UnitOfWork.IPagedList<Facts.Web.ViewModels.FactViewModel>>
-@{
-    Layout = "_LayoutColumn";
-    ViewData["Title"] = "Home Page";
-}
+@{ Layout = "_LayoutColumn";
+                ViewData["Title"] = "Только факты"; }
 
 @if (Model is not null)
 {
     foreach (var fact in Model.Result.Items)
     {
-        <partial name="_Fact" model="fact" view-data="ViewData" />
-    }
+<partial name="_Fact" model="fact" view-data="ViewData" /> }
 
-    <pager class="my-5" asp-paged-list-page-size="Model.Result.PageSize"
-           asp-paged-list-total-count="Model.Result.TotalCount"
-           asp-paged-list-page-index="Model.Result.PageIndex"
-           asp-paged-list-url="index"
-           asp-controller="facts"
-           asp-route-parameter="pageIndex"></pager>
-}
+<pager class="my-5" asp-paged-list-page-size="Model.Result.PageSize"
+       asp-paged-list-total-count="Model.Result.TotalCount"
+       asp-paged-list-page-index="Model.Result.PageIndex"
+       asp-paged-list-url="index"
+       asp-controller="facts"
+       asp-route-parameter="pageIndex"></pager>}
 
 @section Column
 {
@@ -33,40 +29,34 @@
 
         @if (!string.IsNullOrEmpty(GetTag()))
         {
-            <span>по метке:</span>
-            <a asp-controller="Facts" asp-action="Index" asp-route-tag="" asp-route-search="@GetSearch()">
-                <span class="badge rounded-pill bg-danger">
-                    @GetTag()
-                    <i class="fa fa-times"></i>
-                </span>
-            </a>
-        }
+<span>по метке:</span>
+                    <a asp-controller="Facts" asp-action="Index" asp-route-tag="" asp-route-search="@GetSearch()">
+                        <span class="badge rounded-pill bg-danger">
+                            @GetTag()
+                            <i class="fa fa-times"></i>
+                        </span>
+                    </a>}
         @if (!string.IsNullOrEmpty(GetSearch()))
         {
-            <span>по запросу:</span>
-            <a asp-controller="Facts" asp-action="Index" asp-route-tag="@GetTag()" asp-route-search="">
-                <span class="badge rounded-pill bg-danger">
-                    @GetSearch()
-                    <i class="fa fa-times"></i>
-                </span>
-            </a>
-        }
-
-
+<span>по запросу:</span>
+                    <a asp-controller="Facts" asp-action="Index" asp-route-tag="@GetTag()" asp-route-search="">
+                        <span class="badge rounded-pill bg-danger">
+                            @GetSearch()
+                            <i class="fa fa-times"></i>
+                        </span>
+                    </a>}
     </div>
 }
 
 @functions
-{
-    private string GetTag()
-    {
-        var queryParams = ViewData["tag"]?.ToString();
-        return queryParams ?? string.Empty;
-    }
+{ private string GetTag()
+            {
+                var queryParams = ViewData["tag"]?.ToString();
+                return queryParams ?? string.Empty;
+            }
 
-    private string GetSearch()
-    {
-        var queryParams = ViewData["search"]?.ToString();
-        return queryParams ?? string.Empty;
-    }
-}
+            private string GetSearch()
+            {
+                var queryParams = ViewData["search"]?.ToString();
+                return queryParams ?? string.Empty;
+            } }

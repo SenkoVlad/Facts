@@ -2,13 +2,14 @@ using Facts.Web.Controllers.Administrator.Queries;
 using Facts.Web.Mediatr;
 using Facts.Web.ViewModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
 namespace Facts.Web.Controllers
 {
-    // Calabonga: WHAT I DID
+    [Authorize]
     public class AdministratorController: Controller
     {
         private readonly IMediator _mediator;

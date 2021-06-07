@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Facts.Web.Infrastructure.Helpers
 {
-    public class TagCloudHelper
+    public class FactHelper
     {
         public static List<TagCloudViewModel> Generate(List<TagCloudViewModel> items, int clusterCount)
         {
@@ -47,6 +47,14 @@ namespace Facts.Web.Infrastructure.Helpers
             }
 
             return result.OrderBy(x => x.Name).ToList();
+        }
+
+        public (string[] toCreate, string[] toDelete) FindDifference(string[] old, string[] current)
+        {
+            var mask = current.Intersect(old);
+            var toDelete = old.Except(current).ToArray();
+            var toCreate = current.Except(mask).ToArray();
+            return new(toCreate, toDelete);
         }
     }
 }
